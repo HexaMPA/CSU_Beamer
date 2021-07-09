@@ -1,0 +1,170 @@
+%% FileName    : csu.sty
+%% Author      : HexaMPA hexa_mpa@tom.com
+%% Created     : Thu Nov 19 21:41 2016 by Kang Jin-Wen
+%% Modified    : Thu July 8 23:15 2021 by HexaMPA
+%% Copyright   :  (c) 2021
+%% Description : Beamer Template Modified from the CCNU_template for CSU
+%% Time-stamp: <2021-7-8 23:15>
+
+% Copyright 2009 by Pim Vullers
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+
+%%%
+%%% 从现有主题继承（不要修改这些）
+%%%
+
+% 外部元素的布局方案：拆分页眉和页脚
+\useoutertheme{split}
+
+% 外部元素的配色方案：使用背景色
+\usecolortheme{whale}
+
+% 内部元素的布局方案：圆形元素
+\useinnertheme{rounded}
+
+% 内部元素的配色方案：使用前景色
+\usecolortheme{orchid}
+
+
+%%%
+%%% 调整内部主题的定义以匹配个人喜好（修改这些）
+%%%
+
+% 无序列表项目: default (triangle), circle, square, ball
+\setbeamertemplate{itemize items}[default]
+
+% 有序列表项目: default, circle, square, ball
+\setbeamertemplate{enumerate items}[circle]
+
+% 大纲（目录）: default, sections numbered, subsections numbered, circle, square, ball, ball unnumbered
+\setbeamertemplate{sections/subsections in toc}[default]
+
+% 通用块:
+\setbeamertemplate{blocks}[rounded]
+
+% 封面（标题页）:
+\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true]
+
+% 内页:
+\setbeamertemplate{part page}[default][colsep=-4bp,rounded=true]
+
+% 导航符号:
+\setbeamertemplate{navigation symbols}{}
+
+
+%%%
+%%% 调整外部主题的定义以匹配风格
+%%%
+
+% 背景
+\pgfdeclareimage[width=\paperwidth,height=\paperheight]{bg}{res/background}
+\setbeamertemplate{background}{\pgfuseimage{bg}}
+
+% 颜色
+%\usecolortheme[RGB={0,98,109}]{structure} %（华大绿）
+\usecolortheme[RGB={25,98,153}]{structure} %（中南蓝）
+
+\setbeamercolor{frametitle}{parent=subsection in head/foot}
+\setbeamercolor{frametitle right}{parent=section in head/foot}
+
+
+\pgfdeclarehorizontalshading[frametitle.bg,frametitle right.bg]{beamer@frametitleshade}{\paperheight}{%
+  color(0pt)=(frametitle.bg);
+  color(\paperwidth)=(frametitle right.bg)}
+
+\AtBeginDocument{
+  \pgfdeclareverticalshading{beamer@topshade}{\paperwidth}{%
+    color(0pt)=(bg);
+    color(4pt)=(black!50!bg)}
+}
+
+% 脚注: 校训 | 日期 | 校名（英文） 页码
+
+\defbeamertemplate*{footline}{csu theme}{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.35\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{author in head/foot}{知行合一、经世致用}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{author in head/foot}\insertdate
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.285\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}{Central South University}
+  \end{beamercolorbox}%
+   \begin{beamercolorbox}[wd=0.065\paperwidth,ht=2.25ex,dp=1ex,right]{title in head/foot}%
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  
+}
+
+% 标题行: 题目 | 索引 | 校徽
+\defbeamertemplate*{headline}{csu theme}{%
+  \leavevmode%
+  \@tempdimb=6.4375ex%
+    \pgfdeclareimage[height=.95\@tempdimb]{logo}{res/logo.png}%
+    \pgfdeclareimage[height=1.\@tempdimb]{title_logo}{res/title.png}%
+  \logo{\pgfuseimage{logo}}%
+  \ifdim\@tempdimb>0pt%
+    \advance\@tempdimb by 1.125ex%
+     \begin{beamercolorbox}[wd=.3\paperwidth,ht=\@tempdimb,center]{subsection in head/foot}%
+       \vbox to\@tempdimb{\vfil\songti\small\inserttitle\vfil}%
+     \end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.50\paperwidth,ht=\@tempdimb,left]{subsection in head/foot}%
+      \vbox to\@tempdimb{\vfil\kaishu\footnotesize\insertsectionnavigationhorizontal{.40\paperwidth}{\hskip0pt plus1filll}{}\vfil}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.20\paperwidth,ht=\@tempdimb,center]{subsection in head/foot}%
+      \vbox to\@tempdimb{\vfil\pgfuseimage{title_logo}\vfil}%
+    \end{beamercolorbox}%
+  
+}
+% 幻灯片标题区域
+\defbeamertemplate*{frametitle}{csu theme}{%
+  \nointerlineskip%
+  %\vskip-2pt%
+  \hbox{\leavevmode
+    \advance\beamer@leftmargin by -12bp%
+    \advance\beamer@rightmargin by -12bp%
+    \beamer@tempdim=\textwidth%
+    \advance\beamer@tempdim by \beamer@leftmargin%
+    \advance\beamer@tempdim by \beamer@rightmargin%
+    \hskip-\Gm@lmargin\hbox{%
+      \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+          \vbox{}\vskip-.75ex%
+          \leftskip0.3cm%
+          \rightskip0.3cm plus1fil\leavevmode
+			\centering
+          \insertframetitle%
+          \ifx\insertframesubtitle\@empty%
+            \strut\par%
+          \else
+            \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+          \fi%
+          \nointerlineskip
+          \vbox{}%
+          \end{minipage}}%
+      \beamer@tempdim=\ht\beamer@tempbox%
+      \advance\beamer@tempdim by 2pt%
+      \begin{pgfpicture}{0.1mm}{0pt}{1.01\paperwidth}{\beamer@tempdim}
+        \usebeamercolor{frametitle right}
+        \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+        \pgfusepath{clip}
+        \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+      \end{pgfpicture}
+      \hskip-\paperwidth%
+      \box\beamer@tempbox%
+    }%
+    \hskip-\Gm@rmargin%
+  }%
+%  \nointerlineskip
+%    \vskip-0.2pt
+%    \hbox to\textwidth{\hskip-\Gm@lmargin\pgfuseshading{beamer@topshade}\hskip-\Gm@rmargin}
+%    \vskip-2pt
+}
+
+
