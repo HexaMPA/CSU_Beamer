@@ -45,9 +45,11 @@
 
 ## 软件许可证
 
-中南大学校徽校名图片（`csu-vi-logo-blue.pdf` 等）的版权归中南大学所有。
+中南大学校徽校名图片（`logo.png` 等）的版权归中南大学所有。
 
  `biblatex-gb7714-2015` 样式文件使用 [LPPL](https://www.latex-project.org/lppl.txt) 授权。
+
+字体使用开源字体，使用SIL授权。
 
 其他部分使用 [MIT](https://github.com/HexaMPA/CSU_Beamer/blob/main/LICENSE) 授权。
 
